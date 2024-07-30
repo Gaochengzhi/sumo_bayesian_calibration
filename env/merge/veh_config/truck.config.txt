@@ -1,0 +1,17 @@
+tau; normal(3.1,1.6); [2.5,5]
+length; normal(11.7,2.5); [6.9,16.8]
+accel; normal(1.2,2.0); [1,1.4]
+decel; normal(3,2); [2.6,3.4]
+maxSpeed; normal(12,1.9); [10,13]
+vClass; truck
+carFollowModel; EIDM
+emergencyDecel; 4
+lcSublane; 0.2
+lcPushy; 0.2
+lcAssertive; 1
+lcStrategic; 999
+lcKeepRight; 0
+lcOvertakeRight; 0
+lcCooperative; 0
+lcLookaheadLeft; 3
+
