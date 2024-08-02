@@ -12,7 +12,7 @@ def main(base_dir="../data", output_dir="../output"):
     # compute_distribution(base_dir, output_dir)
 
     # 3. Optimize the scene for the best result
-    bayesian_optimize(max_iteration_time=2000)
+    bayesian_optimize(max_iteration_time=500)
 
 
 if __name__ == "__main__":

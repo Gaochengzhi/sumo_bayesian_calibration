@@ -122,22 +122,26 @@ def result_handler(result_queue, task_handler_url):
 # if __name__ == "__main__":
 def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=1000):
     pbounds = {
-        "car_tau_mean": (1, 3),
+        "car_tau_mean": (0.5, 3),
         "car_tau_std": (0, 15),
-        "bus_tau_mean": (1, 3),
+        "bus_tau_mean": (0.5, 3),
         "bus_tau_std": (0, 15),
         "car_acc": (1, 3),
         "car_dcc": (1, 5),
         "bus_acc": (1, 2),
         "bus_dcc": (1, 4),
-        "car_max_v": (8, 15),
-        "bus_max_v": (8, 15),
+        "car_max_v": (10, 33),
+        "bus_max_v": (10, 23),
         "car_lcSublane": (0, 1),
         "bus_lcSublane": (0, 1),
         "car_lcPushy": (0, 1),
         "bus_lcPushy": (0, 1),
+        "car_lcAssertive": (1, 100),
+        "bus_lcAssertive": (1, 100),
         "car_lcCooperative": (0, 1),
         "bus_lcCooperative": (0, 1),
+        "car_lcLookaheadLeft": (2, 100),
+        "bus_lcLookaheadLeft": (2, 100),
     }
     port_number = 8881
     lock = threading.Lock()
@@ -220,7 +224,7 @@ def plot_iteration_score(log_path=""):
     plt.grid(True)
 
     # Save the figure
-    output_path = "../output/new.png"
+    output_path = "../output/plot/iterative_convergence.png"
     plt.savefig(output_path)
     plt.close()
     pass

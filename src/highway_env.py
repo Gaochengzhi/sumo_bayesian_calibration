@@ -95,8 +95,9 @@ def run_one_sim(
 ):
     env = Traffic_Env(record_area=recording_area, config_path=config_path)
     env.start(gui=gui, record=True)
+    hot_time = 100 * 30
     for i in range(simulation_step):
-        if i > 100 * 30:
+        if i > hot_time:
             env.record(i)
         env.step()
     traci.close()

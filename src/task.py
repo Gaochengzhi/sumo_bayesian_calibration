@@ -49,20 +49,22 @@ class SUMO_task:
         return task_id
 
     def create_vehicle_config(self, work_dir, vehicle_type):
-        profile_template = f"""tau; normal({getattr(self.config, vehicle_type + '_tau_mean')},{getattr(self.config, vehicle_type + '_tau_std')});[1.5,3.8]
+        vtype = "passenger" if vehicle_type == "car" else vehicle_type
+        profile_template = f"""tau; normal({getattr(self.config, vehicle_type + '_tau_mean')},{getattr(self.config, vehicle_type + '_tau_std')});[0.1,4]
 accel; {getattr(self.config, vehicle_type + '_acc')}
 decel; {getattr(self.config, vehicle_type + '_dcc')}
 maxSpeed; {getattr(self.config, vehicle_type + '_max_v')}
 carFollowModel; EIDM
 emergencyDecel; 5
 lcSublane; {getattr(self.config, vehicle_type + '_lcSublane')}
-lcPushy; {getattr(self.config, 'car_lcPushy')}
-lcAssertive; 1
+lcPushy; {getattr(self.config, vehicle_type +'_lcPushy')}
+lcAssertive; {getattr(self.config, vehicle_type +'_lcAssertive')}
+vClass  {vtype}
 lcStrategic; 999
 lcKeepRight; 0
 lcOvertakeRight; 0
 lcCooperative; {getattr(self.config, vehicle_type + '_lcCooperative')}
-lcLookaheadLeft; 2
+lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
 """
         config_file_path = os.path.join(work_dir, f"{vehicle_type}.config.txt")
         with open(config_file_path, "w") as config_file:
@@ -93,10 +95,13 @@ lcLookaheadLeft; 2
     def run_task(self, sim_step=754 * 30, save=False, gui=False):
         try:
             run_one_sim(config_path=".", simulation_step=sim_step, gui=gui)
+            res = self.eval()
             if save:
                 # os.chdir("../../output")
-                shutil.copytree(".", f"../../output/{self.env_name}")
-            return self.eval()
+                shutil.copytree(
+                    ".", f"../../output/data_raw/{self.env_name}", dirs_exist_ok=True
+                )
+            return res
 
         except Exception as e:
             handle_exception(e)
@@ -110,9 +115,8 @@ lcLookaheadLeft; 2
         save_distributions(
             data,
         )
-        ## compare the file of ../output/f{data_name}_cache.pkl and ./_cache.pkl
         res = calculate_average_wasserstein_distance(
-            f"../../output/{compare_data_name}_cache.pkl", "_cache.pkl"
+            f"../../output/data_cache/{compare_data_name}_cache.pkl", "_cache.pkl"
         )
 
         return res
@@ -158,7 +162,7 @@ def gen_eval_data():
     # }
 
     task = SUMO_task(param)
-    res = task.run_task(save=True, gui=True)
+    res = task.run_task(save=True, gui=False)
     print(res)
 
 

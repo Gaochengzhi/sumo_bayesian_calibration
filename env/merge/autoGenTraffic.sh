@@ -1,5 +1,10 @@
 #!/bin/bash
-export SUMO_HOME="/root/miniconda3/envs/dreamer/lib/python3.12/site-packages/sumo"
+if [ -z "${SUMO_HOME}" ]; then
+    export SUMO_HOME="/root/miniconda3/envs/dreamer/lib/python3.12/site-packages/sumo"
+    echo "SUMO_HOME was not set. Using default: ${SUMO_HOME}"
+else
+    echo "SUMO_HOME is already set to: ${SUMO_HOME}"
+fi
 
 python3 $SUMO_HOME/tools/createVehTypeDistribution.py car.config.txt --size 10000 --name "car"
 python3 $SUMO_HOME/tools/createVehTypeDistribution.py bus.config.txt --size 1000 --name "bus"

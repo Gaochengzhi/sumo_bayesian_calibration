@@ -44,7 +44,7 @@ def calculate_average_wasserstein_distance(a_cache_path, b_cache_path):
     a_kde_data = a_cache["hist_kde_data"]
     b_kde_data = b_cache["hist_kde_data"]
 
-    variables = ["xAcceleration", "dhw"]
+    variables = ["xAcceleration", "dhw", "xVelocity"]
 
     avg_distances = []
 
@@ -267,11 +267,11 @@ def plot_parallel_coordinatesi(path=""):
     )
     plt.close()
 
-    print(f"Parallel coordinates plot saved to ../output/parallel_coordinates.png")
-
 
 if __name__ == "__main__":
     # compute_distribution()
     # a = load_stats_from_cache("../output/scenecache.pkl")
-    # plot_distribution_from_cache("../output/merge_cache.pkl", "../output")
+    plot_distribution_from_cache(
+        "../output/data_raw/merge/_cache.pkl", "../output/plot"
+    )
     pass
