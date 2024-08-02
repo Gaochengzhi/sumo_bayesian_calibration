@@ -7,6 +7,10 @@ from multiprocessing import Pool, cpu_count
 import pickle
 from scipy.stats import gaussian_kde
 from scipy.stats import wasserstein_distance
+import json
+import glob
+from matplotlib.colors import LinearSegmentedColormap
+import re
 
 
 def filter_and_classify(pd_f):
@@ -40,7 +44,7 @@ def calculate_average_wasserstein_distance(a_cache_path, b_cache_path):
     a_kde_data = a_cache["hist_kde_data"]
     b_kde_data = b_cache["hist_kde_data"]
 
-    variables = ["xVelocity", "yVelocity", "xAcceleration", "dhw"]
+    variables = ["xAcceleration", "dhw"]
 
     avg_distances = []
 
@@ -198,9 +202,76 @@ def compute_distribution(base_dir="../data", output_dir="../output"):
     save_distributions(filtered_data1, output_dir, file_prefix="merge")
 
 
+def plot_parallel_coordinatesi(path=""):
+    if not path:
+        # Scan "../log" and find the latest .log file
+        log_dir = "../log"
+        log_files = [f for f in os.listdir(log_dir) if f.endswith(".log")]
+        latest_log = max(
+            log_files, key=lambda f: os.path.getmtime(os.path.join(log_dir, f))
+        )
+        path = os.path.join(log_dir, latest_log)
+
+    # Read the log file
+    with open(path, "r") as file:
+        log_content = file.read()
+
+    # Parse the JSON data
+    data_list = [
+        json.loads(entry) for entry in log_content.split("\n") if entry.strip()
+    ]
+
+    # Create a DataFrame
+    df = pd.DataFrame(
+        [{**entry["params"], "target": entry["target"]} for entry in data_list]
+    )
+
+    # Sort DataFrame by target value
+    df = df.sort_values("target")
+
+    # Create a custom colormap (red to green)
+    colors = ["#FF0000", "#00FF00"]
+    n_bins = 100
+    cmap = LinearSegmentedColormap.from_list("custom", colors, N=n_bins)
+
+    # Normalize target values to [0, 1] for color mapping
+    norm = plt.Normalize(df["target"].min(), df["target"].max())
+
+    # Create the parallel coordinates plot
+    fig, ax = plt.subplots(figsize=(15, 10))
+    pd.plotting.parallel_coordinates(df, "target", ax=ax, colormap=cmap, xticks=None)
+
+    # Customize the plot
+    ax.set_title("Parallel Coordinates Plot of Parameters vs Target")
+    # ax.set_xlabel("Parameters")
+    # ax.set_ylabel("Normalised Values")
+    # plt.xticks(rotation=45, ha="right")
+
+    # Add a colorbar
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([])
+    cbar = fig.colorbar(sm, ax=ax)
+    # cbar.set_label("Target Value")
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Save the figure
+    output_dir = "../output"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    plt.savefig(
+        os.path.join(output_dir, "parallel_coordinates.png"),
+        dpi=300,
+        bbox_inches="tight",
+    )
+    plt.close()
+
+    print(f"Parallel coordinates plot saved to ../output/parallel_coordinates.png")
+
+
 if __name__ == "__main__":
     # compute_distribution()
     # a = load_stats_from_cache("../output/scenecache.pkl")
-    # print(a)
-
-    plot_distribution_from_cache("../output/merge_cache.pkl", "../output")
+    # plot_distribution_from_cache("../output/merge_cache.pkl", "../output")
+    pass

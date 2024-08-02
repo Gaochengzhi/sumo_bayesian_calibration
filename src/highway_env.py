@@ -88,10 +88,13 @@ class Traffic_Env(gym.Env):
 
 
 def run_one_sim(
-    recording_area="E3", config_path="../env/merge", simulation_step=30 * (279 + 100)
+    recording_area="E3",
+    config_path="../env/merge",
+    simulation_step=30 * (279 + 100),
+    gui=False,
 ):
     env = Traffic_Env(record_area=recording_area, config_path=config_path)
-    env.start(gui=False, record=True)
+    env.start(gui=gui, record=True)
     for i in range(simulation_step):
         if i > 100 * 30:
             env.record(i)

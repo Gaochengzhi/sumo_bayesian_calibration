@@ -4,7 +4,7 @@ import uuid
 import os
 from collections import namedtuple
 import shutil
-from util import handle_exception, copy_files
+from util import handle_exception, copy_files, get_latest_file, json2pd
 import subprocess
 from highway_env import run_one_sim
 import pandas as pd
@@ -16,13 +16,14 @@ from process_data import (
 
 
 class SUMO_task:
-    def __init__(self, param, env="merge"):
+    def __init__(self, param, env_name="merge"):
         ParamType = namedtuple("ParamType", param.keys())
         self.work_dir = None
+        self.env_name = env_name
 
         self.config = ParamType(**param)
         try:
-            self.init_work_space(env)
+            self.init_work_space(env_name)
 
         except Exception as e:
             handle_exception(e)
@@ -89,10 +90,21 @@ lcLookaheadLeft; 2
             handle_exception(e)
             self.close()
 
-    def run_task(self, sim_step=754 * 30):
-        run_one_sim(config_path=".", simulation_step=sim_step)
+    def run_task(self, sim_step=754 * 30, save=False, gui=False):
+        try:
+            run_one_sim(config_path=".", simulation_step=sim_step, gui=gui)
+            if save:
+                # os.chdir("../../output")
+                shutil.copytree(".", f"../../output/{self.env_name}")
+            return self.eval()
 
-    def eval(self, data_name="merge"):
+        except Exception as e:
+            handle_exception(e)
+        finally:
+
+            self.close()
+
+    def eval(self, compare_data_name="merge"):
         pd_f = pd.read_csv("./record.csv")
         data = filter_and_classify(pd_f)
         save_distributions(
@@ -100,7 +112,7 @@ lcLookaheadLeft; 2
         )
         ## compare the file of ../output/f{data_name}_cache.pkl and ./_cache.pkl
         res = calculate_average_wasserstein_distance(
-            "../../output/merge_cache.pkl", "_cache.pkl"
+            f"../../output/{compare_data_name}_cache.pkl", "_cache.pkl"
         )
 
         return res
@@ -113,31 +125,42 @@ lcLookaheadLeft; 2
         return 0
 
 
-def test():
-    param = {
-        "car_tau_mean": 1.6,
-        "car_tau_std": 5,
-        "bus_tau_mean": 2,
-        "bus_tau_std": 10,
-        "car_acc": 2,
-        "car_dcc": 2,
-        "bus_acc": 2,
-        "bus_dcc": 2,
-        "car_max_v": 12,
-        "bus_max_v": 8,
-        "car_lcSublane": 0.5,
-        "bus_lcSublane": 0.5,
-        "car_lcPushy": 0.5,
-        "bus_lcPushy": 0.5,
-        "car_lcCooperative": 0.5,
-        "bus_lcCooperative": 0.5,
-    }
+def get_best_param(log_path=""):
+    if not log_path:
+        log_path = get_latest_file(folder="../log", suffix=".log")
+
+    df = json2pd(log_path)
+    max_target_row = df.loc[df["target"].idxmax()]
+    params = {key: value for key, value in max_target_row.items() if key != "target"}
+    return params
+
+
+def gen_eval_data():
+    param = get_best_param()
+
+    # param = {
+    #     "car_tau_mean": 1.6,
+    #     "car_tau_std": 5,
+    #     "bus_tau_mean": 2,
+    #     "bus_tau_std": 10,
+    #     "car_acc": 2,
+    #     "car_dcc": 2,
+    #     "bus_acc": 2,
+    #     "bus_dcc": 2,
+    #     "car_max_v": 12,
+    #     "bus_max_v": 8,
+    #     "car_lcSublane": 0.5,
+    #     "bus_lcSublane": 0.5,
+    #     "car_lcPushy": 0.5,
+    #     "bus_lcPushy": 0.5,
+    #     "car_lcCooperative": 0.5,
+    #     "bus_lcCooperative": 0.5,
+    # }
+
     task = SUMO_task(param)
-    task.run_task()
-    res = task.eval()
+    res = task.run_task(save=True, gui=True)
     print(res)
-    task.close()
 
 
 if __name__ == "__main__":
-    test()
+    gen_eval_data()

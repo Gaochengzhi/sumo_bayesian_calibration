@@ -5,28 +5,28 @@ from tornado.web import Application, RequestHandler
 from bayes_opt import BayesianOptimization
 from bayes_opt import UtilityFunction
 import time
-import random
 import threading
 import requests
 import json
 from bayes_opt.logger import JSONLogger
 from bayes_opt.event import Events
-from util import round_dic_data, handle_exception
+from util import round_dic_data, handle_exception, get_latest_file, json2pd
 from task import SUMO_task
+import seaborn as sns
+import matplotlib.pyplot as plt
+import logging
 
 
 def task_function(**params):
     # return random.uniform(1, 5)
-
     try:
         task = SUMO_task(params)
-        task.run_task()
-        res = task.eval()
+        res = task.run_task()
         task.close()
+        return -res
     except Exception as e:
         handle_exception(e)
-        res = 1
-    return -res
+        raise
 
 
 class TaskHandler(RequestHandler):
@@ -95,11 +95,15 @@ def execute_task(task_queue, result_queue):
         if task is None:
             break
         params = task["params"]
-        target = task_function(**params)
 
-        print(target)
-        result_queue.put({"params": params, "target": target})
-        task_queue.task_done()
+        try:
+            target = task_function(**params)
+            print(target)
+            result_queue.put({"params": params, "target": target})
+        except Exception as e:
+            handle_exception(e)
+        finally:
+            task_queue.task_done()
 
 
 def result_handler(result_queue, task_handler_url):
@@ -118,16 +122,16 @@ def result_handler(result_queue, task_handler_url):
 # if __name__ == "__main__":
 def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=1000):
     pbounds = {
-        "car_tau_mean": (1.6, 3),
+        "car_tau_mean": (1, 3),
         "car_tau_std": (0, 15),
-        "bus_tau_mean": (2, 4),
+        "bus_tau_mean": (1, 3),
         "bus_tau_std": (0, 15),
         "car_acc": (1, 3),
         "car_dcc": (1, 5),
         "bus_acc": (1, 2),
         "bus_dcc": (1, 4),
-        "car_max_v": (8, 20),
-        "bus_max_v": (8, 20),
+        "car_max_v": (8, 15),
+        "bus_max_v": (8, 15),
         "car_lcSublane": (0, 1),
         "bus_lcSublane": (0, 1),
         "car_lcPushy": (0, 1),
@@ -152,7 +156,7 @@ def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=1000):
         verbose=2,
         random_state=1,
     )
-    optimizer.set_gp_params(alpha=1e-2)
+    optimizer.set_gp_params(alpha=1e-3)
     optimizer.subscribe(Events.OPTIMIZATION_STEP, logger)
     util = UtilityFunction(kind="ucb", kappa=kp, xi=xi)
 
@@ -200,3 +204,27 @@ def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=1000):
 
     for p in init_process:
         p.join()
+
+
+def plot_iteration_score(log_path=""):
+    if not log_path:
+        log_path = get_latest_file(folder="../log", suffix=".log")
+
+    df = json2pd(log_path)
+    df["cummax_target"] = df["target"].cummax()
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(x=df.index, y=(60 - df["cummax_target"]) / 100)
+    plt.title("Iteration Scores")
+    plt.xlabel("Iteration")
+    plt.ylabel("Target Score")
+    plt.grid(True)
+
+    # Save the figure
+    output_path = "../output/new.png"
+    plt.savefig(output_path)
+    plt.close()
+    pass
+
+
+if __name__ == "__main__":
+    plot_iteration_score()
