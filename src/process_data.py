@@ -55,12 +55,14 @@ def calculate_average_wasserstein_distance(a_cache_path, b_cache_path):
                 a_kde_x, a_kde_y = a_kde_data[cache_key][3], a_kde_data[cache_key][4]
                 b_kde_x, b_kde_y = b_kde_data[cache_key][3], b_kde_data[cache_key][4]
                 common_x = np.linspace(
-                    min(a_kde_x[0], b_kde_x[0]), max(a_kde_x[-1], b_kde_x[-1]), 1000
+                    min(a_kde_x[0], b_kde_x[0]), max(
+                        a_kde_x[-1], b_kde_x[-1]), 1000
                 )
                 a_interpolated_y = np.interp(common_x, a_kde_x, a_kde_y)
                 b_interpolated_y = np.interp(common_x, b_kde_x, b_kde_y)
 
-                distance = wasserstein_distance(a_interpolated_y, b_interpolated_y)
+                distance = wasserstein_distance(
+                    a_interpolated_y, b_interpolated_y)
                 avg_distances.append(distance)
 
     return np.mean(avg_distances)
@@ -85,7 +87,8 @@ def save_distributions(filtered_data, output_dir="", file_prefix=""):
     stats_data["vehicle_count"] = vehicle_count
 
     for vehicle_type in ["car", "bus"]:
-        vehicle_data = filtered_data[filtered_data["vehicleType"] == vehicle_type]
+        vehicle_data = filtered_data[filtered_data["vehicleType"]
+                                     == vehicle_type]
         for variable in variables:
             filtered_vehicle_data = iqr_filter(vehicle_data, variable)
             if variable == "dhw":
@@ -119,7 +122,8 @@ def save_distributions(filtered_data, output_dir="", file_prefix=""):
                     }
 
     with open(cache_file_path, "wb") as f:
-        pickle.dump({"hist_kde_data": hist_kde_data, "stats_data": stats_data}, f)
+        pickle.dump({"hist_kde_data": hist_kde_data,
+                    "stats_data": stats_data}, f)
 
 
 def plot_distribution_from_cache(cache_file, output_dir):
@@ -239,7 +243,8 @@ def plot_parallel_coordinatesi(path=""):
 
     # Create the parallel coordinates plot
     fig, ax = plt.subplots(figsize=(15, 10))
-    pd.plotting.parallel_coordinates(df, "target", ax=ax, colormap=cmap, xticks=None)
+    pd.plotting.parallel_coordinates(
+        df, "target", ax=ax, colormap=cmap, xticks=None)
 
     # Customize the plot
     ax.set_title("Parallel Coordinates Plot of Parameters vs Target")

@@ -57,9 +57,9 @@ maxSpeed; {getattr(self.config, vehicle_type + '_max_v')}
 carFollowModel; EIDM
 emergencyDecel; 5
 lcSublane; {getattr(self.config, vehicle_type + '_lcSublane')}
-lcPushy; {getattr(self.config, vehicle_type +'_lcPushy')}
-lcAssertive; {getattr(self.config, vehicle_type +'_lcAssertive')}
-vClass  {vtype}
+lcPushy; {getattr(self.config, vehicle_type + '_lcPushy')}
+lcAssertive; {getattr(self.config, vehicle_type + '_lcAssertive')}
+vClass; {vtype}
 lcStrategic; 999
 lcKeepRight; 0
 lcOvertakeRight; 0
@@ -97,16 +97,14 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
             run_one_sim(config_path=".", simulation_step=sim_step, gui=gui)
             res = self.eval()
             if save:
-                # os.chdir("../../output")
                 shutil.copytree(
                     ".", f"../../output/data_raw/{self.env_name}", dirs_exist_ok=True
                 )
             return res
-
         except Exception as e:
             handle_exception(e)
         finally:
-
+            os.chdir("../../src")
             self.close()
 
     def eval(self, compare_data_name="merge"):
@@ -124,8 +122,6 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
     def close(self):
         if os.path.exists(f"../{self.task_id}"):
             shutil.rmtree(f"../{self.task_id}")
-
-        os.chdir("../../src")
         return 0
 
 
@@ -135,32 +131,13 @@ def get_best_param(log_path=""):
 
     df = json2pd(log_path)
     max_target_row = df.loc[df["target"].idxmax()]
-    params = {key: value for key, value in max_target_row.items() if key != "target"}
+    params = {key: value for key, value in max_target_row.items()
+              if key != "target"}
     return params
 
 
 def gen_eval_data():
     param = get_best_param()
-
-    # param = {
-    #     "car_tau_mean": 1.6,
-    #     "car_tau_std": 5,
-    #     "bus_tau_mean": 2,
-    #     "bus_tau_std": 10,
-    #     "car_acc": 2,
-    #     "car_dcc": 2,
-    #     "bus_acc": 2,
-    #     "bus_dcc": 2,
-    #     "car_max_v": 12,
-    #     "bus_max_v": 8,
-    #     "car_lcSublane": 0.5,
-    #     "bus_lcSublane": 0.5,
-    #     "car_lcPushy": 0.5,
-    #     "bus_lcPushy": 0.5,
-    #     "car_lcCooperative": 0.5,
-    #     "bus_lcCooperative": 0.5,
-    # }
-
     task = SUMO_task(param)
     res = task.run_task(save=True, gui=False)
     print(res)

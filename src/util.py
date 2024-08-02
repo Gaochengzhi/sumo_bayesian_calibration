@@ -1,11 +1,12 @@
 import logging
 import traceback
-import os, shutil
+import os
+import shutil
 import json
 import pandas as pd
 
 
-def round_dic_data(dic_data, decimal_precision=2):
+def round_dic_data(dic_data, decimal_precision=3):
     return {k: round(v, decimal_precision) for k, v in dic_data.items()}
 
 
