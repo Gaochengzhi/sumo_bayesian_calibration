@@ -6,20 +6,23 @@ import threading
 import json
 from bayes_opt.logger import JSONLogger
 from bayes_opt.event import Events
-from util import round_dic_data, handle_exception, get_latest_file, json2pd
+from util import round_dic_data, handle_exception, get_latest_file, json2pd, params_to_tuple
 from task import SUMO_task
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
+import shutil
 
 
 def task_function(**params):
     try:
         task = SUMO_task(params)
-        res = task.run_task(sim_step=754 * 30, save=False, gui=False)
-        return -res
+        id = task.task_id
+        res = task.run_task(sim_step=104 * 30, save=False, gui=False)
+        return res
     except Exception as e:
         handle_exception(e)
-        raise
+        return None
 
 
 def execute_task(task_queue, result_queue, task_done_event):
@@ -30,14 +33,16 @@ def execute_task(task_queue, result_queue, task_done_event):
         params = task["params"]
         try:
             target = task_function(**params)
-            result_queue.put({"params": params, "target": target})
+            if target is not None:
+                result_queue.put({"params": params, "target": - target})
         except Exception as e:
-            handle_exception(e)
+            # handle_exception(e)
+            print(e)
         finally:
             task_queue.task_done()
 
 
-def result_handler(result_queue, optimizer, util, task_queue, task_count, total_task_num, task_done_event, lock):
+def result_handler(result_queue, optimizer, util, task_queue, task_count, total_task_num, task_done_event, lock, issued_params_set):
     while not task_done_event.is_set():
         result = result_queue.get()
         if result is None:
@@ -47,13 +52,20 @@ def result_handler(result_queue, optimizer, util, task_queue, task_count, total_
 
         with lock:
             optimizer.register(params=params, target=target)
-
             with task_count.get_lock():
-                if task_count.value < total_task_num:
+                while task_count.value < total_task_num:
                     new_params = optimizer.suggest(util)
                     round_new_params = round_dic_data(new_params)
-                    task_queue.put({"params": round_new_params})
-                    task_count.value += 1
+                    # Check for duplicates
+                    if params_to_tuple(round_new_params) not in issued_params_set:
+                        task_queue.put({"params": round_new_params})
+                        issued_params_set.add(
+                            params_to_tuple(round_new_params))
+                        task_count.value += 1
+                        break
+                    else:
+                        print(f"Duplicate params detected: {
+                              round_new_params}. Skipping new task.")
                 else:
                     task_done_event.set()
         result_queue.task_done()
@@ -83,6 +95,7 @@ def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=500):
         "bus_lcLookaheadLeft": (2, 100),
     }
     lock = threading.Lock()
+    issued_params_set = set()
 
     date_time = str(time.strftime("%Y-%m-%d_%H:%M:%S"))
     logger = JSONLogger(path=f"../log/{date_time}_log.log")
@@ -122,7 +135,7 @@ def bayesian_optimize(kp=5.576, xi=0.1, max_iteration_time=500):
     result_thread = threading.Thread(
         target=result_handler,
         args=(result_queue, optimizer, util, task_queue, task_count,
-              max_iteration_time, task_done_event, lock),
+              max_iteration_time, task_done_event, lock, issued_params_set),
     )
     result_thread.daemon = True
     result_thread.start()
@@ -150,8 +163,8 @@ def plot_iteration_score(log_path=""):
     df["cummax_target"] = df["target"].cummax()
     plt.figure(figsize=(10, 6))
     plt.plot(-df["cummax_target"], label="Cumulative Max Target")
-    plt.plot(-df["target"], label="Current Target", marker="o")
-    plt.plot(-df["target"].expanding().mean(), label="Expanding Mean")
+    # plt.plot(-df["target"], label="Current Target", marker="o")
+    # plt.plot(-df["target"].expanding().mean(), label="Expanding Mean")
     plt.title("Iteration Scores")
     plt.xlabel("Iteration")
     plt.ylabel("Target Score")

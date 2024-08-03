@@ -34,23 +34,18 @@ def iqr_filter(data, column):
     return data[(data[column] >= (Q1 - 1.5 * IQR)) & (data[column] <= (Q3 + 1.5 * IQR))]
 
 
-def calculate_average_wasserstein_distance(a_cache_path, b_cache_path):
+def calculate_average_wasserstein_distance(a_cache_path, b_cache_path, variables=["xAcceleration", "dhw", "xVelocity"], vehicle_types=["car", "bus"]):
     with open(a_cache_path, "rb") as f:
         a_cache = pickle.load(f)
 
     with open(b_cache_path, "rb") as f:
         b_cache = pickle.load(f)
-
     a_kde_data = a_cache["hist_kde_data"]
     b_kde_data = b_cache["hist_kde_data"]
-
-    variables = ["xAcceleration", "dhw", "xVelocity"]
-
     avg_distances = []
-
-    for vehicle_type in ["car", "bus"]:
+    for vtype in vehicle_types:
         for variable in variables:
-            cache_key = f"{vehicle_type}_{variable}"
+            cache_key = f"{vtype}_{variable}"
             if cache_key in a_kde_data and cache_key in b_kde_data:
                 a_kde_x, a_kde_y = a_kde_data[cache_key][3], a_kde_data[cache_key][4]
                 b_kde_x, b_kde_y = b_kde_data[cache_key][3], b_kde_data[cache_key][4]
@@ -68,15 +63,14 @@ def calculate_average_wasserstein_distance(a_cache_path, b_cache_path):
     return np.mean(avg_distances)
 
 
-def save_distributions(filtered_data, output_dir="", file_prefix=""):
-    variables = [
-        "xVelocity",
-        "yVelocity",
-        "xAcceleration",
-        "dhw",
-    ]
-    cache_name = file_prefix + "_cache.pkl"
+def save_distributions(filtered_data, output_dir="", file_prefix="", variables=[
+    "xVelocity",
+    "yVelocity",
+    "xAcceleration",
+    "dhw",
+]):
 
+    cache_name = file_prefix + "_cache.pkl"
     cache_file_path = os.path.join(output_dir, cache_name)
     hist_kde_data = {}
     stats_data = {}

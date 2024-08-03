@@ -1,0 +1,15 @@
+tau; normal(1.658,8.864);[0.1,4]
+accel; 1.007
+decel; 1.745
+maxSpeed; 22.704
+carFollowModel; EIDM
+emergencyDecel; 5
+lcSublane; 0.597
+lcPushy; 0.483
+lcAssertive; 29.008
+vClass; bus
+lcStrategic; 999
+lcKeepRight; 0
+lcOvertakeRight; 0
+lcCooperative; 0.21
+lcLookaheadLeft; 3.759

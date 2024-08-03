@@ -1,0 +1,15 @@
+tau; normal(1.493,10.456);[0.1,4]
+accel; 1.524
+decel; 1.616
+maxSpeed; 26.058
+carFollowModel; EIDM
+emergencyDecel; 5
+lcSublane; 0.745
+lcPushy; 0.949
+lcAssertive; 10.081
+vClass; passenger
+lcStrategic; 999
+lcKeepRight; 0
+lcOvertakeRight; 0
+lcCooperative; 0.555
+lcLookaheadLeft; 45.418

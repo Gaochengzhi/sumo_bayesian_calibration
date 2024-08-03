@@ -104,8 +104,8 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
         except Exception as e:
             handle_exception(e)
         finally:
-            os.chdir("../../src")
             self.close()
+            os.chdir("../../src")
 
     def eval(self, compare_data_name="merge"):
         pd_f = pd.read_csv("./record.csv")

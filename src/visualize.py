@@ -51,8 +51,10 @@ def plot_distribution_comparison(data1, data2, vehicle_type, variable, output_di
     )
 
     # Plot KDEs
-    plt.plot(kde_x1, kde_y1, color="blue", linestyle="--", label="Dataset 1 KDE")
-    plt.plot(kde_x2, kde_y2, color="red", linestyle="--", label="Dataset 2 KDE")
+    plt.plot(kde_x1, kde_y1, color="blue",
+             linestyle="--", label="Dataset 1 KDE")
+    plt.plot(kde_x2, kde_y2, color="red",
+             linestyle="--", label="Dataset 2 KDE")
 
     plt.title(f"{variable} distribution comparison for {vehicle_type}")
     plt.xlabel(variable)

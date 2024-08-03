@@ -4,15 +4,21 @@ import os
 import shutil
 import json
 import pandas as pd
+import numpy
 
 
-def round_dic_data(dic_data, decimal_precision=3):
+def round_dic_data(dic_data, decimal_precision=1):
     return {k: round(v, decimal_precision) for k, v in dic_data.items()}
 
 
+def params_to_tuple(params):
+    return tuple(sorted(params.items()))
+
+
 def handle_exception(e):
-    logging.error(e)
-    logging.error(traceback.format_exc())
+    if not isinstance(e, numpy.linalg.LinAlgError):
+        logging.error(e)
+        logging.error(traceback.format_exc())
 
 
 def copy_files(files, source_dir, destination_dir):
