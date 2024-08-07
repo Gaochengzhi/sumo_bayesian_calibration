@@ -140,7 +140,7 @@ def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500
 
 
 
-from muti_object_optimization import SinSUMOProblem, MooSUMOProblem, run_pso,run_kgb
+from multi_object_optimization import SinSUMOProblem, MooSUMOProblem, run_pso,run_kgb
 
 
 

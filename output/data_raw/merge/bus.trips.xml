@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-08-03 10:25:50.719161 by randomTrips.py UNKNOWN
+<!-- generated on 2024-08-07 10:10:11.426048 by randomTrips.py UNKNOWN
 <configuration>
-    <end value="754"/>
-    <fringe-factor value="100000.0"/>
-    <lanes value="True"/>
-    <max-distance value="500000.0"/>
-    <min-distance value="10.0"/>
     <net-file value="highway.net.xml"/>
-    <period value="3.14"/>
-    <route-file value="output.trips2.xml"/>
-    <seed value="30"/>
-    <trip-attributes value="departLane=&quot;best&quot; departSpeed=&quot;5&quot; "/>
     <output-trip-file value="bus.trips.xml"/>
+    <route-file value="output.trips2.xml"/>
     <prefix value="bus"/>
+    <trip-attributes value="departLane=&quot;best&quot; departSpeed=&quot;5&quot; "/>
+    <lanes value="True"/>
+    <fringe-factor value="100000"/>
+    <seed value="30"/>
+    <min-distance value="10.0"/>
+    <max-distance value="500000.0"/>
     <validate value="True"/>
+    <end value="754.0"/>
+    <period value="3.14"/>
 </configuration>
 -->
 
-<!-- generated on 2024-08-03 10:25:50 by Eclipse SUMO duarouter Version 1.14.1
+<!-- generated on 2024-08-07 10:10:11 by Eclipse SUMO duarouter Version 1.20.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
 
     <input>
@@ -34,7 +34,7 @@
 
     <time>
         <begin value="0"/>
-        <end value="754"/>
+        <end value="754.0"/>
     </time>
 
     <report>

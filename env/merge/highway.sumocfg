@@ -24,6 +24,7 @@
     <report>
         <verbose value="false" />
         <no-warnings value="true" />
+        <no-step-log value="true" />    
     </report>
 
     <random_number>

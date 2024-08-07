@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ -z "${SUMO_HOME}" ]; then
-    export SUMO_HOME="/root/miniconda3/envs/dreamer/lib/python3.12/site-packages/sumo"
+
+    export SUMO_HOME="/home/ubantu/anaconda3/envs/dreamer/lib/python3.12/site-packages/sumo"
     echo "SUMO_HOME was not set. Using default: ${SUMO_HOME}"
 else
     echo "SUMO_HOME is already set to: ${SUMO_HOME}"

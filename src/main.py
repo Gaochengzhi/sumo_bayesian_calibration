@@ -4,7 +4,7 @@
 
 from process_data import compute_distribution, load_stats_from_cache
 from single_optimize import bayesian_optimize
-from muti_object_optimization import run_nsga2, run_sms, SinSUMOProblem, pbounds
+from multi_object_optimization import run_nsga2, run_sms, SinSUMOProblem, pbounds
 
 
 def main(base_dir="../data", output_dir="../output"):
