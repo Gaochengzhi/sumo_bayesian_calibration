@@ -6,11 +6,12 @@ import numpy as np
 from multiprocessing import Pool, cpu_count
 import pickle
 from scipy.stats import gaussian_kde
-from scipy.stats import wasserstein_distance
+from scipy.stats import entropy
+
 import json
 import glob
 from matplotlib.colors import LinearSegmentedColormap
-import re
+
 
 
 def filter_and_classify(pd_f):
@@ -34,41 +35,46 @@ def iqr_filter(data, column):
     return data[(data[column] >= (Q1 - 1.5 * IQR)) & (data[column] <= (Q3 + 1.5 * IQR))]
 
 
-def calculate_average_wasserstein_distance(a_cache_path, b_cache_path, variables=["xAcceleration", "dhw", "xVelocity"], vehicle_types=["car", "bus"]):
+def kl_divergence(a_cache_path, b_cache_path, variables=["xAcceleration", "dhw", "xVelocity", "yVelocity"], vehicle_types=["car", "bus"]):
     with open(a_cache_path, "rb") as f:
         a_cache = pickle.load(f)
-
     with open(b_cache_path, "rb") as f:
         b_cache = pickle.load(f)
     a_kde_data = a_cache["hist_kde_data"]
     b_kde_data = b_cache["hist_kde_data"]
-    avg_distances = []
+    kl_list = []
     for vtype in vehicle_types:
         for variable in variables:
             cache_key = f"{vtype}_{variable}"
             if cache_key in a_kde_data and cache_key in b_kde_data:
-                a_kde_x, a_kde_y = a_kde_data[cache_key][3], a_kde_data[cache_key][4]
-                b_kde_x, b_kde_y = b_kde_data[cache_key][3], b_kde_data[cache_key][4]
-                common_x = np.linspace(
-                    min(a_kde_x[0], b_kde_x[0]), max(
-                        a_kde_x[-1], b_kde_x[-1]), 1000
-                )
-                a_interpolated_y = np.interp(common_x, a_kde_x, a_kde_y)
-                b_interpolated_y = np.interp(common_x, b_kde_x, b_kde_y)
+                a_hist, a_bin_width, a_bin_centers, a_kde_x, a_kde_y = a_kde_data[cache_key]
+                b_hist, b_bin_width, b_bin_centers, b_kde_x, b_kde_y = b_kde_data[cache_key]
+                
+                # Determine the common range over which to compare the two distributions
+                min_range = max(a_kde_x.min(), b_kde_x.min())
+                max_range = min(a_kde_x.max(), b_kde_x.max())
+                
+                if min_range < max_range:
+                    common_x = np.linspace(min_range, max_range, 1000)
+                    
+                    # Interpolate to get the KDE values on the common range
+                    a_kde_common_y = np.interp(common_x, a_kde_x, a_kde_y)
+                    b_kde_common_y = np.interp(common_x, b_kde_x, b_kde_y)
+                    
+                    # Normalize the KDE values
+                    a_kde_common_y /= np.sum(a_kde_common_y)
+                    b_kde_common_y /= np.sum(b_kde_common_y)
+                    
+                    # Calculate the KL divergence
+                    kl = entropy(a_kde_common_y, b_kde_common_y)
+                    kl_list.append(kl)
+                else:
+                    kl_list.append(float('inf'))
 
-                distance = wasserstein_distance(
-                    a_interpolated_y, b_interpolated_y)
-                avg_distances.append(distance)
-
-    return np.mean(avg_distances)
+    return kl_list
 
 
-def save_distributions(filtered_data, output_dir="", file_prefix="", variables=[
-    "xVelocity",
-    "yVelocity",
-    "xAcceleration",
-    "dhw",
-]):
+def save_distributions(filtered_data, output_dir="", file_prefix="", variables=["xAcceleration", "dhw", "xVelocity", "yVelocity"]):
 
     cache_name = file_prefix + "_cache.pkl"
     cache_file_path = os.path.join(output_dir, cache_name)

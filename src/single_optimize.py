@@ -7,19 +7,16 @@ import json
 from bayes_opt.logger import JSONLogger
 from bayes_opt.event import Events
 from util import round_dic_data, handle_exception, get_latest_file, json2pd, params_to_tuple
-from task import SUMO_task
-import seaborn as sns
-import matplotlib.pyplot as plt
+from task import SUMO_task,pbounds
 import os
 import shutil
-from bayes_opt.util import load_logs
+import numpy as np
 
 
 def task_function(**params):
     try:
         task = SUMO_task(params)
-        id = task.task_id
-        res = task.run_task(sim_step=754 * 30, save=False, gui=False)
+        res = task.run_task(sim_step=750 * 30, save=False, gui=False)
         return res
     except Exception as e:
         handle_exception(e)
@@ -35,10 +32,10 @@ def execute_task(task_queue, result_queue, task_done_event):
         try:
             target = task_function(**params)
             if target is not None:
-                result_queue.put({"params": params, "target": - target})
+                res = -np.sum(target)/len(target)
+                result_queue.put({"params": params, "target": res})
         except Exception as e:
-            # handle_exception(e)
-            print(e)
+            handle_exception(e)
         finally:
             task_queue.task_done()
 
@@ -73,37 +70,14 @@ def result_handler(result_queue, optimizer, util, task_queue, task_count, total_
 
 
 def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500
-    ,pbounds = {
-        "car_tau_mean": (0.5, 4),
-        "car_tau_std": (0, 10),
-        "bus_tau_mean": (0.5, 4),
-        "bus_tau_std": (0, 10),
-        "car_acc": (1, 3),
-        "car_dcc": (1, 4),
-        "bus_acc": (1, 3),
-        "bus_dcc": (1, 4),
-        "car_v_mean": (8, 24),
-        "car_v_std": (0, 10),
-        "bus_v_mean": (8, 24),
-        "bus_v_std": (0, 10),
-        "car_lcSublane": (0, 1),
-        "bus_lcSublane": (0, 1),
-        "car_lcPushy": (0, 1),
-        "bus_lcPushy": (0, 1),
-        "car_lcAssertive": (1, 100),
-        "bus_lcAssertive": (1, 100),
-        "car_lcCooperative": (0, 1),
-        "bus_lcCooperative": (0, 1),
-        "car_lcLookaheadLeft": (2, 100),
-        "bus_lcLookaheadLeft": (2, 100),
-    }):
+    ,pbounds = pbounds):
     lock = threading.Lock()
     issued_params_set = set()
 
     date_time = str(time.strftime("%Y-%m-%d_%H:%M:%S"))
     logger = JSONLogger(path=f"../log/{date_time}_log.log")
     print(f"Init log file: {date_time}")
-    cpu_count = int(multiprocessing.cpu_count())-1
+    cpu_count = int(multiprocessing.cpu_count()/2)-2
     # cpu_count = 12
     task_queue = multiprocessing.JoinableQueue()
     result_queue = multiprocessing.JoinableQueue()
@@ -146,30 +120,37 @@ def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500
     result_thread.daemon = True
     result_thread.start()
 
+
     print(f"Starting Bayesian Optimization with {
           cpu_count} parallel processes.")
 
     try:
-        task_queue.join()
-        result_queue.join()
+        while task_count.value < max_iteration_time and not task_done_event.is_set():
+            time.sleep(1)
     except KeyboardInterrupt:
         print("============== Shutting down ===========")
         task_done_event.set()
 
     result_thread.join()
     print("All result handling finished.")
-    if not task_done_event.is_set():
-        task_done_event.set()
-
     for p in init_process:
-        task_queue.put(None)
-        p.join()
+        if p.is_alive():
+            p.terminate()
+    return
 
 
 
+from muti_object_optimization import SinSUMOProblem, MooSUMOProblem, run_pso,run_kgb
 
 
 
+from pymoo.core.problem import StarmapParallelization
 if __name__ == "__main__":
+    pool = multiprocessing.Pool(100)
+    runner = StarmapParallelization(pool.starmap)
+    problem1 = SinSUMOProblem(pbounds,elementwise_runner=runner)
+    problem2 = MooSUMOProblem(pbounds,elementwise_runner=runner)
+    # run_pso(problem1)
+    # run_kgb(problem2)
     bayesian_optimize()
-    # plot_iteration_score()
+    pool.close()

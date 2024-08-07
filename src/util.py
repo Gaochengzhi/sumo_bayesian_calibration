@@ -7,7 +7,7 @@ import pandas as pd
 import numpy
 
 
-def round_dic_data(dic_data, decimal_precision=1):
+def round_dic_data(dic_data, decimal_precision=4):
     return {k: round(v, decimal_precision) for k, v in dic_data.items()}
 
 
