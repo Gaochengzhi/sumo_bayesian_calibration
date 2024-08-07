@@ -61,7 +61,6 @@ from pymoo.core.problem import StarmapParallelization
 from pymoo.algorithms.soo.nonconvex.ga import GA
 from pymoo.optimize import minimize
 
-n_cpu = 100
 
 
 
@@ -73,6 +72,7 @@ import pickle
 from pymoo.algorithms.moo.sms import SMSEMOA
 from pymoo.algorithms.moo.kgb import KGB
 
+n_core = int(multiprocessing.cpu_count())-5
 def run_optimization(problem, algorithm, result_file):
 
     
@@ -113,15 +113,30 @@ from pymoo.algorithms.soo.nonconvex.pso import PSO
 def run_pso(problem):
     algorithm = PSO(pop_size=50)
     run_optimization(problem,algorithm, 'result5.pkl')
-from pymoo.problems.single import Rastrigin
 
+
+
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 if __name__ == '__main__':
-    pool = multiprocessing.Pool(n_cpu)
+    pool = multiprocessing.Pool(n_core)
     runner = StarmapParallelization(pool.starmap)
-    problem = MooSUMOProblem(pbounds, elementwise_runner=runner)
-    run_nsga2(problem)
-    run_sms(problem)
-    run_kgb(problem)
-    run_g3pcx(problem)
+    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner)
+    sin_problem = SinSUMOProblem(pbounds,elementwise_runner=runner)
+    functions_to_run = [
+        (run_nsga2, moo_problem),
+        (run_sms, moo_problem),
+        (run_kgb, moo_problem),
+        (run_g3pcx, moo_problem),
+        (run_pso, sin_problem)
+    ]
+    with ProcessPoolExecutor(max_workers=n_core) as executor:
+        futures = [executor.submit(func, prob) for func, prob in functions_to_run]
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as e:
+                print(f'Generated an exception: {e}')
+    
     pool.close()
+    pool.join()
