@@ -2,8 +2,6 @@ import gym
 import numpy as np
 import os
 import sys
-import math
-import xml.dom.minidom
 
 try:
     sys.path.append(
@@ -25,7 +23,6 @@ except ImportError:
 
 import traci
 import csv
-import argparse
 
 
 class Traffic_Env(gym.Env):
@@ -87,22 +84,27 @@ class Traffic_Env(gym.Env):
             )
 
 
-def run_one_sim(
+def run_sim(
     recording_area="E3",
     config_path="../env/merge",
     simulation_step=30 * (279 + 100),
     gui=False,
 ):
     env = Traffic_Env(record_area=recording_area, config_path=config_path)
+
     env.start(gui=gui, record=True)
-    hot_time = 100 * 30
-    for i in range(simulation_step):
-        if i > hot_time:
-            env.record(i)
-        env.step()
-    traci.close()
-    sys.stdout.flush()
+    try:
+        hot_time = 100 * 30
+        for i in range(simulation_step):
+            if i > hot_time:
+                env.record(i)
+            env.step()
+    except Exception as e:
+        print(e)
+    finally:
+        traci.close()
+        sys.stdout.flush()
 
 
 if __name__ == "__main__":
-    run_one_sim()
+    run_sim()

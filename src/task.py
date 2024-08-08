@@ -6,7 +6,7 @@ from collections import namedtuple
 import shutil
 from util import handle_exception, copy_files, get_latest_file, json2pd
 import subprocess
-from highway_env import run_one_sim
+from highway_env import run_sim
 import pandas as pd
 from process_data import (
     filter_and_classify,
@@ -19,14 +19,14 @@ pbounds = {
     "car_tau_std": (0, 10),
     "bus_tau_mean": (0.5, 4),
     "bus_tau_std": (0, 10),
-    "car_acc": (1, 3),
+    "car_acc": (1, 4),
     "car_dcc": (1, 4),
-    "bus_acc": (1, 3),
+    "bus_acc": (1, 4),
     "bus_dcc": (1, 4),
     "car_sigma": (0, 1),
-    "car_lcSigma": (0,1),
+    "car_lcSigma": (0, 1),
     "bus_sigma": (0, 1),
-    "bus_lcSigma": (0,1),
+    "bus_lcSigma": (0, 1),
     "car_v_mean": (8, 24),
     "car_v_std": (0, 20),
     "bus_v_mean": (8, 24),
@@ -44,6 +44,8 @@ pbounds = {
     "car_lcLookaheadLeft": (2, 100),
     "bus_lcLookaheadLeft": (2, 100),
 }
+
+
 class SUMO_task:
     def __init__(self, param, env_name="merge"):
         ParamType = namedtuple("ParamType", param.keys())
@@ -79,12 +81,11 @@ class SUMO_task:
 
     def create_vehicle_config(self, work_dir, vehicle_type):
         vtype = "passenger" if vehicle_type == "car" else vehicle_type
-        profile_template = f"""tau; normal({getattr(self.config, vehicle_type + '_tau_mean')},{getattr(self.config, vehicle_type + '_tau_std')});[0.1,5]
+        profile_template = f"""tau; normal({getattr(self.config, vehicle_type + '_tau_mean')},{getattr(self.config, vehicle_type + '_tau_std')});[0.2,6]
 accel; {getattr(self.config, vehicle_type + '_acc')}
 decel; {getattr(self.config, vehicle_type + '_dcc')}
 maxSpeed; normal({getattr(self.config, vehicle_type + '_v_mean')},{getattr(self.config, vehicle_type + '_v_std')});[6,30]
 carFollowModel; EIDM
-emergencyDecel; 5
 sigma; {getattr(self.config, vehicle_type + '_sigma')}
 lcSigma; {getattr(self.config, vehicle_type + '_lcSigma')}
 lcSublane; {getattr(self.config, vehicle_type + '_lcSublane')}
@@ -127,7 +128,7 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
 
     def run_task(self, sim_step=754 * 30, save=False, gui=False):
         try:
-            run_one_sim(config_path=".", simulation_step=sim_step, gui=gui)
+            run_sim(config_path=".", simulation_step=sim_step, gui=gui)
             res = self.eval()
             if save:
                 shutil.copytree(
@@ -140,14 +141,16 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
             self.close()
             os.chdir("../../src")
 
-    def eval(self ,compare_data_name="merge"):
+    def eval(self, compare_data_name="merge"):
         pd_f = pd.read_csv("./record.csv")
         data = filter_and_classify(pd_f)
         save_distributions(
             data,
         )
         res = kl_divergence(
-            f"../../output/data_cache/{compare_data_name}_cache.pkl", "_cache.pkl"
+            f"../../output/data_cache/{compare_data_name}_cache.pkl",
+            "_cache.pkl",
+            variables=["xAcceleration", "dhw", "xVelocity"],
         )
 
         return res
@@ -164,16 +167,15 @@ def get_best_param(log_path=""):
 
     df = json2pd(log_path)
     max_target_row = df.loc[df["target"].idxmax()]
-    params = {key: value for key, value in max_target_row.items()
-              if key != "target"}
+    params = {key: value for key, value in max_target_row.items() if key != "target"}
     return params
 
 
 def gen_eval_data():
     param = get_best_param()
     task = SUMO_task(param)
-    res = task.run_task(save=True, gui=False,sim_step=600*30)
-    print("target:",res)
+    res = task.run_task(save=True, gui=False, sim_step=800 * 30)
+    print("target:", res)
 
 
 if __name__ == "__main__":
