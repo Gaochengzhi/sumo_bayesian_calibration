@@ -2,6 +2,7 @@ import gym
 import numpy as np
 import os
 import sys
+from util import handle_exception
 
 try:
     sys.path.append(
@@ -94,13 +95,13 @@ def run_sim(
 
     env.start(gui=gui, record=True)
     try:
-        hot_time = 100 * 30
+        hot_time = 200 * 30
         for i in range(simulation_step):
             if i > hot_time:
                 env.record(i)
             env.step()
     except Exception as e:
-        print(e)
+        handle_exception(e)
     finally:
         traci.close()
         sys.stdout.flush()

@@ -16,7 +16,7 @@ class MooSUMOProblem(ElementwiseProblem):
         n_var = len(param_bounds)
         xl = [bounds[0] for bounds in param_bounds.values()]
         xu = [bounds[1] for bounds in param_bounds.values()]
-        super().__init__(n_var=n_var, n_obj=8, n_ieq_constr=0, xl=xl, xu=xu, **kwargs)
+        super().__init__(n_var=n_var, n_obj=6, n_ieq_constr=0, xl=xl, xu=xu, **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
         params = {key: x[i] for i, key in enumerate(self.param_bounds.keys())}
@@ -73,7 +73,7 @@ def run_optimization(problem, algorithm, algorithm_name):
     res = minimize(
         problem,
         algorithm,
-        termination=("n_gen", 20),
+        termination=("n_gen", 50),
         seed=1,
         save_history=True,
         verbose=True,
@@ -84,30 +84,49 @@ def run_optimization(problem, algorithm, algorithm_name):
 
 
 def run_nsga2(problem):
-    algorithm = NSGA2(pop_size=50)
+    algorithm = NSGA2(pop_size=100)
     run_optimization(problem, algorithm, "../output/data_cache/nsga2_result.pkl")
 
 
 def run_sms(problem):
-    algorithm = SMSEMOA(pop_size=50)
+    algorithm = SMSEMOA(pop_size=100)
     run_optimization(problem, algorithm, "../output/data_cache/sms_result.pkl")
 
 
 def run_kgb(problem):
-    algorithm = KGB(pop_size=50)
+    algorithm = KGB(pop_size=100)
     run_optimization(problem, algorithm, "../output/data_cache/kgb_result.pkl")
 
 
 def run_g3pcx(problem):
-    algorithm = G3PCX(pop_size=50)
+    algorithm = G3PCX(pop_size=100)
     run_optimization(problem, algorithm, "../output/data_cache/g3pcx_result.pkl")
+
+
+from pymoo.algorithms.moo.age2 import AGEMOEA2
+
+
+def run_age2(problem):
+    algorithm = AGEMOEA2(pop_size=100)
+    run_optimization(problem, algorithm, "../output/data_cache/age2_result.pkl")
+
+
+from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.util.ref_dirs import get_reference_directions
+
+
+# create the reference directions to be used for the optimization
+def run_nsga3(problem):
+    ref_dirs = get_reference_directions("energy", 6, 50, seed=1)
+    algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
+    run_optimization(problem, algorithm, "../output/data_cache/nsga3_result.pkl")
 
 
 from pymoo.algorithms.soo.nonconvex.pso import PSO
 
 
 def run_pso(problem):
-    algorithm = PSO(pop_size=50)
+    algorithm = PSO(pop_size=100)
     run_optimization(problem, algorithm, "../output/data_cache/pso_result.pkl")
 
 
@@ -122,10 +141,12 @@ if __name__ == "__main__":
     moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner)
     sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner)
     # run_g3pcx(moo_problem)
-    run_kgb(moo_problem)
+    # run_kgb(moo_problem)
     # run_pso(sin_problem)
     # run_sms(moo_problem)
+    # run_nsga3(moo_problem)
     # run_nsga2(moo_problem)
+    run_age2(moo_problem)
 
     # Create the problem with parallel evaluation
     pool.close()
