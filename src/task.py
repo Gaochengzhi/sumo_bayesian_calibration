@@ -1,5 +1,3 @@
-import time
-import random
 import uuid
 import os
 from collections import namedtuple
@@ -47,15 +45,13 @@ pbounds = {
 
 
 class SUMO_task:
-    def __init__(self, param, env_name="merge"):
+    def __init__(self, param, env="merge"):
         ParamType = namedtuple("ParamType", param.keys())
         self.work_dir = None
-        self.env_name = env_name
-
+        self.env = env
         self.config = ParamType(**param)
         try:
-            self.init_work_space(env_name)
-
+            self.init_work_space(env)
         except Exception as e:
             handle_exception(e)
             self.close()
@@ -67,7 +63,7 @@ class SUMO_task:
         os.mkdir(self.work_dir)
 
         files_to_copy = [
-            "background.png",
+            # "background.png",
             "background.xml",
             "highway.net.xml",
             "highway.sumocfg",
@@ -126,13 +122,13 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
             handle_exception(e)
             self.close()
 
-    def run_task(self, sim_step=754 * 30, save=False, gui=False):
+    def run_task(self, sim_step, save=False, gui=False):
         try:
-            run_sim(config_path=".", simulation_step=sim_step, gui=gui)
+            run_sim(config_path=".", sim_step=sim_step, gui=gui)
             res = self.eval()
             if save:
                 shutil.copytree(
-                    ".", f"../../output/data_raw/{self.env_name}", dirs_exist_ok=True
+                    ".", f"../../output/data_raw/{self.env}", dirs_exist_ok=True
                 )
             return res
         except Exception as e:
@@ -141,7 +137,8 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
             self.close()
             os.chdir("../../src")
 
-    def eval(self, compare_data_name="merge"):
+    def eval(self):
+        compare_data_name = self.env
         pd_f = pd.read_csv("./record.csv")
         data = filter_and_classify(pd_f)
         save_distributions(
@@ -152,7 +149,6 @@ lcLookaheadLeft; {getattr(self.config, vehicle_type + '_lcLookaheadLeft')}
             "_cache.pkl",
             variables=["xAcceleration", "dhw", "xVelocity"],
         )
-
         return res
 
     def close(self):
@@ -171,12 +167,27 @@ def get_best_param(log_path=""):
     return params
 
 
-def gen_eval_data():
+def eval_data(env):
     param = get_best_param()
-    task = SUMO_task(param)
+    task = SUMO_task(param, env=env)
     res = task.run_task(save=True, gui=False, sim_step=800 * 30)
     print("target:", res)
 
 
+def eval_tuning(compare_data_name="merge"):
+    pd_f = pd.read_csv("../output/data_raw/merge/record.csv")
+    data = filter_and_classify(pd_f)
+    save_distributions(
+        data,
+    )
+    res = kl_divergence(
+        f"../output/data_cache/{compare_data_name}_cache.pkl",
+        "_cache.pkl",
+        variables=["xAcceleration", "dhw", "xVelocity"],
+    )
+    print(res)
+
+
 if __name__ == "__main__":
-    gen_eval_data()
+    eval_data(env="right")
+    # eval_tuning()

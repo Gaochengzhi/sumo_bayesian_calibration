@@ -22,7 +22,7 @@ class MooSUMOProblem(ElementwiseProblem):
         params = {key: x[i] for i, key in enumerate(self.param_bounds.keys())}
 
         try:
-            task = SUMO_task(params, env_name=self.env_name)
+            task = SUMO_task(params, env=self.env_name)
             res = task.run_task(sim_step=750 * 30, save=False, gui=False)
             if not res:
                 out["F"] = [1] * self.n_obj
@@ -45,7 +45,7 @@ class SinSUMOProblem(ElementwiseProblem):
         params = {key: x[i] for i, key in enumerate(self.param_bounds.keys())}
 
         try:
-            task = SUMO_task(params, env_name=self.env_name)
+            task = SUMO_task(params, env=self.env_name)
             res = task.run_task(sim_step=750 * 30, save=False, gui=False)
             if not res:
                 out["F"] = [1]
@@ -73,34 +73,14 @@ def run_optimization(problem, algorithm, algorithm_name):
     res = minimize(
         problem,
         algorithm,
-        termination=("n_gen", 50),
+        termination=("n_gen", 30),
         seed=1,
         save_history=True,
         verbose=True,
     )
-    result_file = f"{algorithm_name}"
+    result_file = f"../output/data_cache/{problem.env_name}_{algorithm_name}.pkl"
     with open(result_file, "wb") as f:
         pickle.dump(res, f)
-
-
-def run_nsga2(problem):
-    algorithm = NSGA2(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/nsga2_result.pkl")
-
-
-def run_sms(problem):
-    algorithm = SMSEMOA(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/sms_result.pkl")
-
-
-def run_kgb(problem):
-    algorithm = KGB(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/kgb_result.pkl")
-
-
-def run_g3pcx(problem):
-    algorithm = G3PCX(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/g3pcx_result.pkl")
 
 
 from pymoo.algorithms.moo.age2 import AGEMOEA2
@@ -108,7 +88,7 @@ from pymoo.algorithms.moo.age2 import AGEMOEA2
 
 def run_age2(problem):
     algorithm = AGEMOEA2(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/age2_result.pkl")
+    run_optimization(problem, algorithm, "age2")
 
 
 from pymoo.algorithms.moo.nsga3 import NSGA3
@@ -117,9 +97,9 @@ from pymoo.util.ref_dirs import get_reference_directions
 
 # create the reference directions to be used for the optimization
 def run_nsga3(problem):
-    ref_dirs = get_reference_directions("energy", 6, 50, seed=1)
+    ref_dirs = get_reference_directions("energy", 6, 100, seed=1)
     algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
-    run_optimization(problem, algorithm, "../output/data_cache/nsga3_result.pkl")
+    run_optimization(problem, algorithm, "nsga3")
 
 
 from pymoo.algorithms.soo.nonconvex.pso import PSO
@@ -127,7 +107,7 @@ from pymoo.algorithms.soo.nonconvex.pso import PSO
 
 def run_pso(problem):
     algorithm = PSO(pop_size=100)
-    run_optimization(problem, algorithm, "../output/data_cache/pso_result.pkl")
+    run_optimization(problem, algorithm, "pso.pkl")
 
 
 import multiprocessing
@@ -138,14 +118,17 @@ Config.warnings["not_compiled"] = False
 if __name__ == "__main__":
     pool = multiprocessing.Pool(n_core)
     runner = StarmapParallelization(pool.starmap)
-    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner)
-    sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner)
+    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="right")
+    sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="right")
     # run_g3pcx(moo_problem)
     # run_kgb(moo_problem)
     # run_pso(sin_problem)
     # run_sms(moo_problem)
     # run_nsga3(moo_problem)
-    # run_nsga2(moo_problem)
+    # run_age2(moo_problem)
+    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
+    sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
+    run_nsga3(moo_problem)
     run_age2(moo_problem)
 
     # Create the problem with parallel evaluation

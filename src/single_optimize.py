@@ -3,14 +3,11 @@ from bayes_opt import BayesianOptimization
 from bayes_opt import UtilityFunction
 import time
 import threading
-import json
 from bayes_opt.logger import JSONLogger
 from bayes_opt.event import Events
 from util import (
     round_dic_data,
     handle_exception,
-    get_latest_file,
-    json2pd,
     params_to_tuple,
 )
 from task import SUMO_task, pbounds
@@ -19,9 +16,9 @@ import shutil
 import numpy as np
 
 
-def task_function(**params):
+def task_function(env, **params):
     try:
-        task = SUMO_task(params)
+        task = SUMO_task(params, env=env)
         res = task.run_task(sim_step=750 * 30, save=False, gui=False)
         return res
     except Exception as e:
@@ -29,14 +26,14 @@ def task_function(**params):
         return None
 
 
-def execute_task(task_queue, result_queue, task_done_event):
+def execute_task(task_queue, result_queue, task_done_event, env):
     while not task_done_event.is_set():
         task = task_queue.get()
         if task is None:
             break
         params = task["params"]
         try:
-            target = task_function(**params)
+            target = task_function(**params, env=env)
             if target is not None:
                 res = -np.sum(target) / len(target)
                 result_queue.put({"params": params, "target": res})
@@ -85,14 +82,16 @@ def result_handler(
         result_queue.task_done()
 
 
-def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500, pbounds=pbounds):
+def bayesian_optimize(
+    kp=4, xi=0.01, max_iteration_time=500, pbounds=pbounds, env="merge"
+):
     lock = threading.Lock()
     issued_params_set = set()
 
     date_time = str(time.strftime("%Y-%m-%d_%H:%M:%S"))
     logger = JSONLogger(path=f"../log/{date_time}_log.log")
     print(f"Init log file: {date_time}")
-    cpu_count = int(multiprocessing.cpu_count())
+    cpu_count = int(multiprocessing.cpu_count()) - 10
     # cpu_count = 2
     task_queue = multiprocessing.JoinableQueue()
     result_queue = multiprocessing.JoinableQueue()
@@ -118,7 +117,7 @@ def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500, pbounds=pbounds):
     init_process = []
     for _ in range(cpu_count):
         p = multiprocessing.Process(
-            target=execute_task, args=(task_queue, result_queue, task_done_event)
+            target=execute_task, args=(task_queue, result_queue, task_done_event, env)
         )
         init_process.append(p)
         p.start()
@@ -146,7 +145,6 @@ def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500, pbounds=pbounds):
         while task_count.value < max_iteration_time and not task_done_event.is_set():
             time.sleep(1)
     except KeyboardInterrupt:
-        print("============== Shutting down ===========")
         task_done_event.set()
 
     result_thread.join()
@@ -157,9 +155,7 @@ def bayesian_optimize(kp=4, xi=0.01, max_iteration_time=500, pbounds=pbounds):
     return
 
 
-from multi_object_optimization import SinSUMOProblem, MooSUMOProblem, run_pso, run_kgb
-
-
+from multi_object_optimization import SinSUMOProblem, MooSUMOProblem, run_pso
 from pymoo.core.problem import StarmapParallelization
 
 if __name__ == "__main__":
@@ -168,6 +164,6 @@ if __name__ == "__main__":
     problem1 = SinSUMOProblem(pbounds, elementwise_runner=runner)
     problem2 = MooSUMOProblem(pbounds, elementwise_runner=runner)
     # run_pso(problem1)
-    # run_kgb(problem2)
-    bayesian_optimize(max_iteration_time=1000)
+    # bayesian_optimize(max_iteration_time=3000, env="merge")
+    bayesian_optimize(max_iteration_time=3000, env="right")
     pool.close()

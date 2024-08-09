@@ -16,7 +16,6 @@ def main(base_dir="../data", output_dir="../output"):
     bayesian_optimize(max_iteration_time=1000)
 
 
-
 if __name__ == "__main__":
     run_sms()
     run_nsga2()

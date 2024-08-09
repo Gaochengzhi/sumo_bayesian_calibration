@@ -88,7 +88,7 @@ class Traffic_Env(gym.Env):
 def run_sim(
     recording_area="E3",
     config_path="../env/merge",
-    simulation_step=30 * (279 + 100),
+    sim_step=30 * (679 + 100),
     gui=False,
 ):
     env = Traffic_Env(record_area=recording_area, config_path=config_path)
@@ -96,7 +96,7 @@ def run_sim(
     env.start(gui=gui, record=True)
     try:
         hot_time = 200 * 30
-        for i in range(simulation_step):
+        for i in range(sim_step):
             if i > hot_time:
                 env.record(i)
             env.step()
@@ -108,4 +108,4 @@ def run_sim(
 
 
 if __name__ == "__main__":
-    run_sim()
+    run_sim(config_path="../output/data_raw/merge")
