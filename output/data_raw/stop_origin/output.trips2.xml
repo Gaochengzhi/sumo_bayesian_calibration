@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-08-13 09:40:35.720423 by randomTrips.py UNKNOWN
+<configuration>
+    <net-file value="highway.net.xml"/>
+    <output-trip-file value="bus.trips.xml"/>
+    <route-file value="output.trips2.xml"/>
+    <prefix value="bus"/>
+    <trip-attributes value="departLane=&quot;best&quot; departSpeed=&quot;5&quot; "/>
+    <lanes value="True"/>
+    <fringe-factor value="100000"/>
+    <seed value="30"/>
+    <min-distance value="10.0"/>
+    <max-distance value="500000.0"/>
+    <validate value="True"/>
+    <end value="754.0"/>
+    <period value="1.84"/>
+</configuration>
+-->
+
+<!-- generated on 2024-08-13 09:40:35 by Eclipse SUMO duarouter Version 1.20.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="highway.net.xml"/>
+        <route-files value="bus.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="output.trips2.xml"/>
+        <alternatives-output value="NUL"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="754.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <ignore-errors value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vehicle id="bus0" depart="0.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus1" depart="1.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus2" depart="3.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus3" depart="5.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus4" depart="7.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus5" depart="9.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus6" depart="11.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus7" depart="12.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus8" depart="14.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus9" depart="16.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus10" depart="18.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus11" depart="20.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus12" depart="22.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus13" depart="23.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus14" depart="25.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus15" depart="27.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus16" depart="29.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus17" depart="31.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus18" depart="33.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus19" depart="34.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus20" depart="36.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus21" depart="38.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus22" depart="40.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus23" depart="42.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus24" depart="44.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus25" depart="46.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus26" depart="47.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus27" depart="49.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus28" depart="51.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus29" depart="53.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus30" depart="55.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus31" depart="57.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus32" depart="58.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus33" depart="60.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus34" depart="62.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus35" depart="64.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus36" depart="66.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus37" depart="68.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus38" depart="69.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus39" depart="71.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus40" depart="73.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus41" depart="75.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus42" depart="77.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus43" depart="79.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus44" depart="80.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus45" depart="82.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus46" depart="84.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus47" depart="86.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus48" depart="88.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus49" depart="90.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus50" depart="92.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus51" depart="93.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus52" depart="95.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus53" depart="97.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus54" depart="99.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus55" depart="101.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus56" depart="103.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus57" depart="104.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus58" depart="106.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus59" depart="108.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus60" depart="110.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus61" depart="112.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus62" depart="114.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus63" depart="115.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus64" depart="117.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus65" depart="119.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus66" depart="121.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus67" depart="123.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus68" depart="125.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus69" depart="126.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus70" depart="128.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus71" depart="130.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus72" depart="132.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus73" depart="134.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus74" depart="136.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus75" depart="138.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus76" depart="139.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus77" depart="141.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus78" depart="143.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus79" depart="145.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus80" depart="147.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus81" depart="149.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus82" depart="150.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus83" depart="152.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus84" depart="154.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus85" depart="156.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus86" depart="158.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus87" depart="160.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus88" depart="161.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus89" depart="163.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus90" depart="165.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus91" depart="167.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus92" depart="169.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus93" depart="171.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus94" depart="172.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus95" depart="174.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus96" depart="176.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus97" depart="178.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus98" depart="180.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus99" depart="182.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus100" depart="184.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus101" depart="185.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus102" depart="187.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus103" depart="189.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus104" depart="191.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus105" depart="193.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus106" depart="195.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus107" depart="196.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus108" depart="198.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus109" depart="200.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus110" depart="202.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus111" depart="204.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus112" depart="206.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus113" depart="207.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus114" depart="209.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus115" depart="211.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus116" depart="213.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus117" depart="215.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus118" depart="217.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus119" depart="218.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus120" depart="220.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus121" depart="222.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus122" depart="224.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus123" depart="226.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus124" depart="228.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus125" depart="230.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus126" depart="231.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus127" depart="233.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus128" depart="235.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus129" depart="237.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus130" depart="239.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus131" depart="241.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus132" depart="242.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus133" depart="244.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus134" depart="246.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus135" depart="248.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus136" depart="250.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus137" depart="252.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus138" depart="253.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus139" depart="255.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus140" depart="257.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus141" depart="259.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus142" depart="261.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus143" depart="263.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus144" depart="264.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus145" depart="266.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus146" depart="268.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus147" depart="270.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus148" depart="272.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus149" depart="274.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus150" depart="276.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus151" depart="277.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus152" depart="279.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus153" depart="281.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus154" depart="283.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus155" depart="285.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus156" depart="287.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus157" depart="288.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus158" depart="290.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus159" depart="292.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus160" depart="294.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus161" depart="296.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus162" depart="298.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus163" depart="299.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus164" depart="301.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus165" depart="303.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus166" depart="305.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus167" depart="307.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus168" depart="309.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus169" depart="310.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus170" depart="312.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus171" depart="314.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus172" depart="316.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus173" depart="318.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus174" depart="320.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus175" depart="322.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus176" depart="323.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus177" depart="325.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus178" depart="327.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus179" depart="329.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus180" depart="331.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus181" depart="333.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus182" depart="334.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus183" depart="336.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus184" depart="338.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus185" depart="340.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus186" depart="342.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus187" depart="344.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus188" depart="345.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus189" depart="347.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus190" depart="349.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus191" depart="351.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus192" depart="353.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus193" depart="355.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus194" depart="356.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus195" depart="358.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus196" depart="360.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus197" depart="362.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus198" depart="364.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus199" depart="366.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus200" depart="368.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus201" depart="369.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus202" depart="371.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus203" depart="373.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus204" depart="375.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus205" depart="377.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus206" depart="379.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus207" depart="380.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus208" depart="382.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus209" depart="384.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus210" depart="386.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus211" depart="388.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus212" depart="390.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus213" depart="391.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus214" depart="393.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus215" depart="395.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus216" depart="397.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus217" depart="399.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus218" depart="401.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus219" depart="402.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus220" depart="404.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus221" depart="406.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus222" depart="408.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus223" depart="410.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus224" depart="412.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus225" depart="414.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus226" depart="415.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus227" depart="417.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus228" depart="419.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus229" depart="421.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus230" depart="423.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus231" depart="425.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus232" depart="426.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus233" depart="428.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus234" depart="430.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus235" depart="432.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus236" depart="434.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus237" depart="436.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus238" depart="437.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus239" depart="439.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus240" depart="441.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus241" depart="443.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus242" depart="445.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus243" depart="447.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus244" depart="448.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus245" depart="450.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus246" depart="452.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus247" depart="454.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus248" depart="456.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus249" depart="458.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus250" depart="460.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus251" depart="461.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus252" depart="463.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus253" depart="465.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus254" depart="467.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus255" depart="469.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus256" depart="471.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus257" depart="472.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus258" depart="474.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus259" depart="476.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus260" depart="478.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus261" depart="480.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus262" depart="482.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus263" depart="483.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus264" depart="485.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus265" depart="487.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus266" depart="489.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus267" depart="491.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus268" depart="493.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus269" depart="494.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus270" depart="496.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus271" depart="498.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus272" depart="500.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus273" depart="502.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus274" depart="504.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus275" depart="506.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus276" depart="507.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus277" depart="509.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus278" depart="511.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus279" depart="513.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus280" depart="515.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus281" depart="517.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus282" depart="518.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus283" depart="520.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus284" depart="522.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus285" depart="524.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus286" depart="526.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus287" depart="528.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus288" depart="529.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus289" depart="531.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus290" depart="533.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus291" depart="535.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus292" depart="537.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus293" depart="539.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus294" depart="540.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus295" depart="542.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus296" depart="544.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus297" depart="546.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus298" depart="548.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus299" depart="550.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus300" depart="552.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus301" depart="553.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus302" depart="555.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus303" depart="557.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus304" depart="559.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus305" depart="561.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus306" depart="563.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus307" depart="564.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus308" depart="566.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus309" depart="568.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus310" depart="570.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus311" depart="572.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus312" depart="574.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus313" depart="575.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus314" depart="577.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus315" depart="579.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus316" depart="581.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus317" depart="583.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus318" depart="585.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus319" depart="586.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus320" depart="588.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus321" depart="590.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus322" depart="592.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus323" depart="594.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus324" depart="596.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus325" depart="598.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus326" depart="599.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus327" depart="601.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus328" depart="603.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus329" depart="605.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus330" depart="607.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus331" depart="609.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus332" depart="610.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus333" depart="612.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus334" depart="614.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus335" depart="616.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus336" depart="618.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus337" depart="620.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus338" depart="621.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus339" depart="623.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus340" depart="625.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus341" depart="627.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus342" depart="629.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus343" depart="631.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus344" depart="632.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus345" depart="634.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus346" depart="636.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus347" depart="638.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus348" depart="640.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus349" depart="642.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus350" depart="644.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus351" depart="645.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus352" depart="647.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus353" depart="649.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus354" depart="651.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus355" depart="653.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus356" depart="655.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus357" depart="656.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus358" depart="658.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus359" depart="660.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus360" depart="662.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus361" depart="664.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus362" depart="666.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus363" depart="667.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus364" depart="669.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus365" depart="671.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus366" depart="673.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus367" depart="675.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus368" depart="677.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus369" depart="678.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus370" depart="680.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus371" depart="682.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus372" depart="684.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus373" depart="686.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus374" depart="688.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus375" depart="690.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus376" depart="691.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus377" depart="693.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus378" depart="695.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus379" depart="697.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus380" depart="699.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus381" depart="701.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus382" depart="702.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus383" depart="704.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus384" depart="706.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus385" depart="708.40" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus386" depart="710.24" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus387" depart="712.08" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus388" depart="713.92" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus389" depart="715.76" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus390" depart="717.60" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus391" depart="719.44" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus392" depart="721.28" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus393" depart="723.12" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus394" depart="724.96" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus395" depart="726.80" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus396" depart="728.64" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus397" depart="730.48" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus398" depart="732.32" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus399" depart="734.16" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus400" depart="736.00" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus401" depart="737.84" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus402" depart="739.68" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus403" depart="741.52" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus404" depart="743.36" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus405" depart="745.20" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus406" depart="747.04" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus407" depart="748.88" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus408" depart="750.72" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+    <vehicle id="bus409" depart="752.56" departLane="best" departSpeed="5.00">
+        <route edges="E0 E3 E1"/>
+    </vehicle>
+</routes>
