@@ -5,7 +5,7 @@
 
     <input>
         <net-file value="highway.net.xml" />
-        <route-files value="vTypeDistributions.add.xml,car.trips.xml,bus.trips.xml" />
+        <route-files value="stop.xml,vTypeDistributions.add.xml,car.trips.xml,bus.trips.xml" />
     </input>
 
     <time>
