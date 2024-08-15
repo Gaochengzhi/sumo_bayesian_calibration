@@ -87,7 +87,7 @@ def bayesian_optimize(
     pbounds=pbounds,
     env="merge",
     log_name=None,
-    cpu_count=int(multiprocessing.cpu_count()) - 2,
+    cpu_count=int(multiprocessing.cpu_count()) - 5,
 ):
     if not log_name:
         log_name = env
@@ -158,5 +158,5 @@ def bayesian_optimize(
 
 if __name__ == "__main__":
     # bayesian_optimize(max_iteration=3000, env="merge", log_name="merge")
-    bayesian_optimize(max_iteration=3000, env="right", log_name="right")
+    # bayesian_optimize(max_iteration=3000, env="right", log_name="right")
     bayesian_optimize(max_iteration=3000, env="stop", log_name="stop")

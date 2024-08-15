@@ -65,6 +65,7 @@ class SUMO_task:
 
         files_to_copy = [
             # "background.png",
+            "stop.xml",
             "background.xml",
             "highway.net.xml",
             "highway.sumocfg",
