@@ -68,7 +68,8 @@ def result_handler(
                     # Check for duplicates
                     if params_to_tuple(round_new_params) not in issued_params_set:
                         task_queue.put({"params": round_new_params})
-                        issued_params_set.add(params_to_tuple(round_new_params))
+                        issued_params_set.add(
+                            params_to_tuple(round_new_params))
                         task_count.value += 1
                         break
                     else:
@@ -87,7 +88,7 @@ def bayesian_optimize(
     pbounds=pbounds,
     env="merge",
     log_name=None,
-    cpu_count=int(multiprocessing.cpu_count()) - 5,
+    cpu_count=int(multiprocessing.cpu_count()) - 4,
 ):
     if not log_name:
         log_name = env
@@ -118,7 +119,8 @@ def bayesian_optimize(
     init_process = []
     for _ in range(cpu_count):
         p = multiprocessing.Process(
-            target=execute_task, args=(task_queue, result_queue, task_done_event, env)
+            target=execute_task, args=(
+                task_queue, result_queue, task_done_event, env)
         )
         init_process.append(p)
         p.start()
@@ -140,7 +142,8 @@ def bayesian_optimize(
     result_thread.daemon = True
     result_thread.start()
 
-    print(f"Starting Bayesian Optimization with {cpu_count} parallel processes.")
+    print(
+        f"Starting Bayesian Optimization with {cpu_count} parallel processes.")
 
     try:
         while task_count.value < max_iteration and not task_done_event.is_set():
@@ -158,5 +161,5 @@ def bayesian_optimize(
 
 if __name__ == "__main__":
     # bayesian_optimize(max_iteration=3000, env="merge", log_name="merge")
-    # bayesian_optimize(max_iteration=3000, env="right", log_name="right")
-    bayesian_optimize(max_iteration=3000, env="stop", log_name="stop")
+    bayesian_optimize(max_iteration=3000, env="right", log_name="right")
+    # bayesian_optimize(max_iteration=3000, env="stop", log_name="stop")
