@@ -93,24 +93,24 @@ def run_pso(problem):
 if __name__ == "__main__":
 
     n_core = int(multiprocessing.cpu_count())
-    # n_core = 50
+    n_core = 101
     pool = multiprocessing.Pool(n_core)
     runner = StarmapParallelization(pool.starmap)
 
-    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="merge")
-    sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="merge")
-    run_pso(sin_problem)
-    run_nsga3(moo_problem)
-    run_age2(moo_problem)
+    # moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="merge")
+    # sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="merge")
+    # run_pso(sin_problem)
+    # run_nsga3(moo_problem)
+    # run_age2(moo_problem)
     moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="right")
     sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="right")
     run_pso(sin_problem)
     run_nsga3(moo_problem)
     run_age2(moo_problem)
-    moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
-    sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
-    run_pso(sin_problem)
-    run_nsga3(moo_problem)
-    run_age2(moo_problem)
+    # moo_problem = MooSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
+    # sin_problem = SinSUMOProblem(pbounds, elementwise_runner=runner, env_name="stop")
+    # run_pso(sin_problem)
+    # run_nsga3(moo_problem)
+    # run_age2(moo_problem)
 
     pool.close()
