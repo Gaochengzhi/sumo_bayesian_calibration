@@ -6,13 +6,15 @@
 
 > **Note**: This is the background traffic flow data calibration code for the paper "[RiskDreamer: Autonomous Driving via Entropy-Risk Balancing Action Expansion in Batch Planning with Trusted Traffic Simulations](https://github.com/Gaochengzhi/RiskDreamer)".
 
+> *For Chinese documentation, please refer to [README_zh.md](README_zh.md)*
+
 ### Author Information
 
-<p align="center"><em>Jiangsu University &amp; Nanyang Technological University</em></p>
+<p align="center"><em><b>Jiangsu University &amp; Nanyang Technological University</b></em></p>
 
 <p align="center"><em>Qingchao Liu, Chengzhi Gao, Xiangkun He, Hai Wang, Chen Lv, Yingfeng Cai, Long Chen</em></p>
 
-*For Chinese documentation, please refer to [README_zh.md](README_zh.md)*
+
 
 ## Introduction
 
