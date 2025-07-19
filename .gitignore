@@ -1,0 +1,6 @@
+/data/*
+/tmp/*
+.venv
+!/data/.gitignore
+!/tmp/.gitignore
+
